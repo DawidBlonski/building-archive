@@ -8,7 +8,7 @@ class City(models.Model):
     id_simc = models.IntegerField(primary_key=True)
     city = models.CharField(max_length=100)
 
-    def __str__(self):
+    def __str__(self) -> str:
         return self.city
 
 
@@ -20,14 +20,14 @@ class Street(models.Model):
     class Meta:
         unique_together = (("street_id", "city"),)
 
-    def __str__(self):
+    def __str__(self) -> str:
         return f"{self.street} {self.city.city}"
 
 
 class PostCode(models.Model):
     code = models.CharField(primary_key=True, max_length=6)
 
-    def __str__(self):
+    def __str__(self) -> str:
         return self.code
 
 
@@ -39,7 +39,7 @@ class AddresPoint(models.Model):
     adres = models.CharField(max_length=15)
     geometry = gis_models.PointField()
 
-    def __str__(self):
+    def __str__(self) -> str:
         return f"{self.post_code} {self.city.city} {self.street.street} {self.adres}"
 
 
@@ -49,5 +49,5 @@ class Buildings(models.Model):
     age = models.IntegerField(null=True)
     geometry = gis_models.MultiPolygonField(null=True)
 
-    def __str__(self):
+    def __str__(self) -> str:
         return f"{self.id} {'Empty' if not self.age else self.age}"
