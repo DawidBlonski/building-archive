@@ -1,0 +1,43 @@
+[
+  {
+    "model": "archive_manager.city",
+    "pk": 987331,
+    "fields": {
+        "city": "Strzelin"
+    }
+},
+{
+    "model": "archive_manager.street",
+    "pk": 281,
+    "fields": {
+        "street_id": 24806,
+        "street": "Wrocławska",
+        "city": 987331
+    }
+},
+{
+    "model": "archive_manager.postcode",
+    "pk": "57-100",
+    "fields": {}
+},
+{
+    "model": "archive_manager.addrespoint",
+    "pk": "a0ef2e0a-269a-4656-ab79-ef1b8550bfa9",
+    "fields": {
+        "city": 987331,
+        "street": 281,
+        "post_code": "57-100",
+        "adres": "76",
+        "geometry": "SRID=2180;POINT (6434209.197473019 5628720.844981104)"
+    }
+},
+{
+    "model": "archive_manager.buildings",
+    "pk": "001bf341-5618-485f-b215-95c3324a8a8a",
+    "fields": {
+        "adress": "a0ef2e0a-269a-4656-ab79-ef1b8550bfa9",
+        "age": 1978,
+        "geometry": "SRID=4326;MULTIPOLYGON (((17.0669887 50.7902031, 17.0668425 50.7901656, 17.0668915 50.7900893, 17.0670377 50.7901269, 17.0669887 50.7902031)))"
+    }
+}
+]
