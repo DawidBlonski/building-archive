@@ -1,3 +1,9 @@
-from django.shortcuts import render
+from rest_framework import generics
 
-# Create your views here.
+from .models import Buildings
+from .serializers import BuildingsSerializer
+
+
+class BuildingsList(generics.ListAPIView):
+    queryset = Buildings.objects.all()
+    serializer_class = BuildingsSerializer

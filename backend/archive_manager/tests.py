@@ -1,5 +1,6 @@
 from django.contrib.gis.geos.collections import MultiPolygon
 from django.test import TestCase
+from django.urls import reverse
 
 from .models import AddresPoint, Buildings, City, PostCode, Street
 
@@ -44,3 +45,17 @@ class ModelTests(TestCase):
         self.assertEqual(
             buildings.__str__(), "001bf341-5618-485f-b215-95c3324a8a8a 1978"
         )
+
+
+class ViewTests(TestCase):
+    fixtures = ["backend/archive_manager/fixtures/archive.json"]
+
+    def setUp(self) -> None:
+        self.buildings_url = reverse("buildings")
+
+    def test_get_all_view_url(self):
+        self.assertEqual(self.buildings_url, "/api/buildings")
+
+    def test_get_buildings(self):
+        response = self.client.get(self.buildings_url)
+        self.assertEqual(response.status_code, 200)
