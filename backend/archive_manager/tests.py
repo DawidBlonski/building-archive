@@ -1,5 +1,7 @@
+import time
+
 from django.contrib.gis.geos.collections import MultiPolygon
-from django.test import TestCase
+from django.test import Client, TestCase
 from django.urls import reverse
 
 from .models import AddresPoint, Buildings, City, PostCode, Street
@@ -52,6 +54,7 @@ class ViewTests(TestCase):
 
     def setUp(self) -> None:
         self.buildings_url = reverse("buildings")
+        self.client = Client()
 
     def test_get_all_view_url(self):
         self.assertEqual(self.buildings_url, "/api/buildings")

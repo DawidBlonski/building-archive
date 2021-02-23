@@ -1,9 +1,11 @@
-from rest_framework import serializers
+from typing import Any, Dict, List
 
-from .models import Buildings
+from django.db.models.query import QuerySet
 
 
-class BuildingsSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Buildings
-        fields = ["age", "geometry"]
+def serialize_buiding(building: Dict) -> Dict[int, Any]:
+    return {"age": building.get("age"), "geometry": building.get("geometry").coords}
+
+
+def buildings_serializer(buildings_query: QuerySet) -> List:
+    return map(serialize_buiding, buildings_query)
