@@ -31,7 +31,7 @@ class PostCode(models.Model):
         return self.code
 
 
-class AddresPoint(models.Model):
+class AdresPoint(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4(), editable=False)
     city = models.ForeignKey(City, models.SET_NULL, null=True)
     street = models.ForeignKey(Street, models.SET_NULL, null=True, blank=True)
@@ -40,7 +40,7 @@ class AddresPoint(models.Model):
     geometry = gis_models.PointField()
 
     def __str__(self) -> str:
-        return f"{self.post_code} {self.city.city} {self.street.street} {self.adres}"
+        return f"{self.city} {self.adres}"
 
 
 class Buildings(models.Model):

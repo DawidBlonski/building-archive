@@ -48,6 +48,12 @@ class ModelTests(TestCase):
             buildings.__str__(), "001bf341-5618-485f-b215-95c3324a8a8a 1978"
         )
 
+    def test_adres_point_foregin_key(self):
+        adress_point = AddresPoint.objects.get(pk="a0ef2e0a-269a-4656-ab79-ef1b8550bfa9")
+        street_id = adress_point.street.id
+        self.assertEqual(street_id,281)
+
+
 
 class ViewTests(TestCase):
     fixtures = ["backend/archive_manager/fixtures/archive.json"]
