@@ -1,16 +1,19 @@
-from rest_framework.request import Request
-from rest_framework.views import APIView, Response
+from rest_framework.generics import ListAPIView
+from rest_framework_gis.filters import InBBoxFilter
 from silk.profiling.profiler import silk_profile
 
 from .models import Buildings
-from .serializers import buildings_serializer
+from .serializers import BuildingnSerializer
 
 
-class BuildingsList(APIView):
-    @silk_profile(name="Build")
-    def get(self, request: Request, *args, **kwargs) -> Response:
-        queryset = Buildings.objects.values("age", "geometry").filter(
-            geometry__isnull=False
-        )
-        serializer = buildings_serializer(queryset)
-        return Response(serializer)
+class BuildingsList(ListAPIView):
+    queryset = Buildings.objects.values("age", "geometry").filter(
+        geometry__isnull=False
+    )
+    serializer_class = BuildingnSerializer
+    filter_backends = (InBBoxFilter,)
+    bbox_filter_field = "geometry"
+
+    @silk_profile()
+    def get(self, request, *args, **kwargs):
+        return super().get(request, *args, **kwargs)

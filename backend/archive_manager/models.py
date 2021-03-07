@@ -45,7 +45,7 @@ class AdresPoint(models.Model):
 
 class Buildings(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4(), editable=False)
-    adress = models.ForeignKey(AddresPoint, models.SET_NULL, null=True)
+    adress = models.ForeignKey(AdresPoint, models.SET_NULL, null=True)
     age = models.IntegerField(null=True)
     geometry = gis_models.MultiPolygonField(null=True)
 
