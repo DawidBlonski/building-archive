@@ -1,5 +1,6 @@
 from rest_framework.request import Request
 from rest_framework.views import APIView, Response
+from django.http import JsonResponse
 from silk.profiling.profiler import silk_profile
 
 from .models import Buildings
@@ -13,4 +14,4 @@ class BuildingsList(APIView):
             geometry__isnull=False
         )
         serializer = buildings_serializer(queryset)
-        return Response(serializer)
+        return JsonResponse(serializer,safe=False)

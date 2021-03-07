@@ -21,7 +21,7 @@
     "fields": {}
 },
 {
-    "model": "archive_manager.addrespoint",
+    "model": "archive_manager.adrespoint",
     "pk": "a0ef2e0a-269a-4656-ab79-ef1b8550bfa9",
     "fields": {
         "city": 987331,

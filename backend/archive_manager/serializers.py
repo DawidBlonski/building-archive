@@ -8,4 +8,4 @@ def serialize_buiding(building: Dict) -> Dict[int, Any]:
 
 
 def buildings_serializer(buildings_query: QuerySet) -> List:
-    return map(serialize_buiding, buildings_query)
+    return list(map(serialize_buiding, buildings_query))
