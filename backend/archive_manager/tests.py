@@ -28,9 +28,7 @@ class ModelTests(TestCase):
         self.assertEqual(post_code.__str__(), "57-100")
 
     def test_create_adress_point(self):
-        adress_point = AdresPoint.objects.get(
-            pk="a0ef2e0a-269a-4656-ab79-ef1b8550bfa9"
-        )
+        adress_point = AdresPoint.objects.get(pk="a0ef2e0a-269a-4656-ab79-ef1b8550bfa9")
         self.assertEqual(adress_point.adres, "76")
         self.assertEqual(adress_point.city.pk, 987331)
         self.assertEqual(adress_point.street.pk, 281)
@@ -51,8 +49,7 @@ class ModelTests(TestCase):
     def test_adres_point_foregin_key(self):
         adress_point = AdresPoint.objects.get(pk="a0ef2e0a-269a-4656-ab79-ef1b8550bfa9")
         street_id = adress_point.street.id
-        self.assertEqual(street_id,281)
-
+        self.assertEqual(street_id, 281)
 
 
 class ViewTests(TestCase):
@@ -68,3 +65,11 @@ class ViewTests(TestCase):
     def test_get_buildings(self):
         response = self.client.get(self.buildings_url)
         self.assertEqual(response.status_code, 200)
+
+    def test_bbox(self):
+        response = self.client.get(
+            self.buildings_url, {"in_bbox": "17.078129,50.777480,17.087989,50.780808"}
+        )
+        self.assertEqual(response.data["features"], [])
+        response = self.client.get(self.buildings_url, {"in_bbox": "17,50,18,51"})
+        self.assertEqual(len(response.data["features"]), 1)

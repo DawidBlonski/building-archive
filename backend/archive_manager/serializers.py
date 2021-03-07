@@ -1,11 +1,10 @@
-from typing import Any, Dict, List
+from rest_framework_gis.serializers import GeoFeatureModelSerializer
 
-from django.db.models.query import QuerySet
-
-
-def serialize_buiding(building: Dict) -> Dict[int, Any]:
-    return {"age": building.get("age"), "geometry": building.get("geometry").coords}
+from .models import Buildings
 
 
-def buildings_serializer(buildings_query: QuerySet) -> List:
-    return list(map(serialize_buiding, buildings_query))
+class BuildingnSerializer(GeoFeatureModelSerializer):
+    class Meta:
+        model = Buildings
+        fields = ("age", "geometry")
+        geo_field = "geometry"
