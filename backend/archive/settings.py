@@ -3,7 +3,6 @@ from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 SILKY_PYTHON_PROFILER = True
 SILKY_PYTHON_PROFILER_BINARY = True
 SILKY_PYTHON_PROFILER_RESULT_PATH = "/tmp/"
@@ -23,7 +22,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    "archive_manager.apps.ArchiveManagerConfig",
+    "backend.archive_manager.apps.ArchiveManagerConfig",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -48,7 +47,7 @@ MIDDLEWARE = [
     "silk.middleware.SilkyMiddleware",
 ]
 
-ROOT_URLCONF = "archive.urls"
+ROOT_URLCONF = "backend.archive.urls"
 
 TEMPLATES = [
     {
