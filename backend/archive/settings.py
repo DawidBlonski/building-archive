@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     "rest_framework_gis",
     "django_filters",
     "silk",
+    'frontend.apps.FrontendConfig'
 ]
 
 MIDDLEWARE = [
