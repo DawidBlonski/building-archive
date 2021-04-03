@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     "rest_framework_gis",
     "django_filters",
     "silk",
+    "leaflet",
     'frontend.apps.FrontendConfig'
 ]
 
@@ -53,7 +54,7 @@ ROOT_URLCONF = "backend.archive.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": ['frontend/templates'],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -66,7 +67,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = "archive.wsgi.application"
+WSGI_APPLICATION = "backend.archive.wsgi.application"
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
@@ -120,7 +121,19 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = "/static/"
+STATIC_ROOT = "static/"
+
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
 
 REST_FRAMEWORK = {
     "DEFAULT_FILTER_BACKENDS": ("django_filters.rest_framework.DjangoFilterBackend",),
+}
+
+LEAFLET_CONFIG = {
+  'DEFAULT_CENTER': (50.78,17.060),
+  'DEFAULT_ZOOM': 15,
+  'MIN_ZOOM': 1,
+  'MAX_ZOOM': 20,
 }

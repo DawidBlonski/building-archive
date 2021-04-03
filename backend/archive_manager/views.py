@@ -12,8 +12,9 @@ class BuildingsList(ListAPIView):
     )
     serializer_class = BuildingnSerializer
     filter_backends = (InBBoxFilter,)
-    bbox_filter_field = "geometry"
+    bbox_filter_field = 'point'
 
     @silk_profile()
     def get(self, request, *args, **kwargs):
+        print(request.build_absolute_uri())
         return super().get(request, *args, **kwargs)
